@@ -1,37 +1,55 @@
-function humanReadable(seconds) {
-    let time = ['00', '00', '00'];
-    let mins = seconds / 60 
-    
-    if (seconds < 60){
-      
-      time[2] = seconds.toString()
+function formatDuration (seconds) {
+
+  let minutes = 0, hours = 0, days = 0, years = 0; 
+
+  if (seconds === 0) return "now";
+  if (seconds === 1) return "1 second";
+  if (seconds < 60) return seconds + " seconds";
   
-    } else if (seconds < 3600){
-    
-      let min = Math.floor(seconds/60);
-      let sec = seconds - min*60;
-      time[1] = min.toString();
-      time[2] = sec.toString();
-      
-    } else {
-    
-      let pureHours = Math.floor(seconds/3600)
-      let pureMins = Math.floor(seconds/60) - pureHours*60
-      let pureSeconds = seconds - pureHours*3600 - pureMins*60
-      time[0] = pureHours.toString()
-      time[1] = pureMins.toString()
-      time[2] = pureSeconds.toString()
-      
-    }
-    
-    for (i=0; i<time.length; i++){
-      if (time[i].length == 2){
-         continue
+  if (seconds >= 60){
+    minutes = (seconds - seconds % 60) / 60;
+    seconds  = seconds - (minutes * 60); 
+  } 
+  
+  if (minutes >= 60){
+    hours = (minutes - minutes % 60) / 60;
+    minutes = minutes - (hours * 60); 
+  }
+  
+  if (hours >= 24){
+    days = (hours - hours % 24) / 24; 
+    hours = hours - (days * 24); 
+  }
+  
+  if (days > 365){
+    years = (days - days % 365) / 365;
+    days = days - (years * 365); 
+  }
+  
+  var arr = [];   
+  var names = ["years", "days", "hours", "minutes", "seconds"]; 
+  var unitNums = [years, days, hours, minutes, seconds]; 
+  
+  for (var i in unitNums){
+    if (unitNums[i] !== 0){
+      if (unitNums[i] === 1){ 
+        arr.push(unitNums[i] + " " + names[i].slice(0, -1) + ", ");
       } else {
-         time[i] = '0' + time[i] 
+        arr.push(unitNums[i] + " " + names[i] + ", "); 
       }
+      
     }
-    
-    return time.join(':');
     
   }
+  
+  if (arr.length === 1) return arr[0].slice(0, -2);
+  
+  var last = arr[arr.length - 1];
+  var middle = arr[arr.length - 2];
+  var newLast = " and " + last.slice(0, -2); 
+  var newMiddle = middle.slice(0, -2); 
+  arr.splice(arr.length - 2, 2, newMiddle, newLast); 
+  
+  return arr.join('');
+
+}
