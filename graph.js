@@ -25,6 +25,20 @@ class Graph {
          }
          delete this.adjacencyList[vertex]
      }
+  
+     depthFirstRecursive(start){
+         const result = [];
+         const visited = {};
+         const adjacencyList = this.adjacencyList;
+  
+         (function dfs(vertex){
+             if(!vertex) return null;
+             visited[vertex] = true;
+             result.push(vertex);
+             adjacencyList[vetex].forEach()
+         })(start)
+     }
+  
   }
   
   let g = new Graph();
@@ -35,4 +49,4 @@ class Graph {
   g.addEdge('LA', 'HK');
   g.removeEdge('LA', 'NY');
   g.addEdge('NY', 'LA');
-  g.removeVertex('NY')
+   
