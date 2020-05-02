@@ -35,7 +35,6 @@ class Graph {
              if(!vertex) return null;
              visited[vertex] = true;
              result.push(vertex);
-             adjacencyList[vetex].forEach()
          })(start)
      }
   
