@@ -6,11 +6,13 @@ class Node{
 }
 
 class SinglyLinkedList{
+
     constructor(){
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
+
     push(val){
         var newNode = new Node(val);
         if(!this.head){
@@ -23,6 +25,7 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+
     pop(){
         if(!this.head) return undefined;
         var current = this.head;
@@ -40,6 +43,7 @@ class SinglyLinkedList{
         }
         return current;
     }
+
     shift(){
         if(!this.head) return undefined;
         var currentHead = this.head;
@@ -50,6 +54,7 @@ class SinglyLinkedList{
         }
         return currentHead;
     }
+
     unshift(val){
         var newNode = new Node(val);
         if(!this.head) {
@@ -61,6 +66,7 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+    
     get(index){
         if(index < 0 || index >= this.length) return null;
         var counter = 0;
@@ -128,9 +134,3 @@ class SinglyLinkedList{
 }
 
 var list = new SinglyLinkedList()
-
-list.push(100)
-list.push(201)
-list.push(250)
-list.push(350)
-list.push(999)
