@@ -77,6 +77,7 @@ class SinglyLinkedList{
         }
         return current;
     }
+
     set(index, val){
         var foundNode = this.get(index);
         if(foundNode){
@@ -85,6 +86,7 @@ class SinglyLinkedList{
         }
         return false;
     }
+
     insert(index, val){
         if(index < 0 || index > this.length) return false;
         if(index === this.length) return !!this.push(val);
@@ -122,6 +124,7 @@ class SinglyLinkedList{
       }
       return this;
     }
+    
     print(){
         var arr = [];
         var current = this.head
